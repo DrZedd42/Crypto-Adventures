@@ -17,7 +17,7 @@ contract AdventuresBase is ownable {
 
   // Items
   struct Item {
-    
+
     uint8 itemType;
     uint16 type;
     uint8 quality;
@@ -75,7 +75,6 @@ contract AdventuresBase is ownable {
 
   function genItem(Char character) public {
     uint256 id = keccak256(genRand256());
-    
 
     uint8 itemType = id & 1;
     id = id >> s1;
