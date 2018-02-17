@@ -6,7 +6,6 @@ contract mintItem is ERC721Token {
 
   function mintItem(address _to, uint256 _tokenId) {
     _mint(_to, _tokenId);
- 
   }
 
   function _genTokenId(address _to) private returns (unit256) {

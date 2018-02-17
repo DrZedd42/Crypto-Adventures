@@ -17,6 +17,13 @@ A decentralized RPG text-based adventure using ERC-721 tokens as playable charac
  - [ ] Make a website
  - [ ] Dialog skill checks
  - [ ] Write Story
+ - [ ] Artwork [0/7]
+   - [ ] Monster
+   - [ ] Boss Monster
+   - [ ] Sword
+   - [ ] Fire sword
+   - [ ] Hat
+   - [ ] Background
 ** Post Hackathon [0/3]
 - [ ] Race modifiers
 - [ ] Prevent hacking
