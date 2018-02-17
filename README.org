@@ -10,7 +10,7 @@ A decentralized RPG text-based adventure using ERC-721 tokens as playable charac
  - [ ] Write get Kitty info contract
  - [ ] Monster drop
    - [ ] +/- 3 levels on a item min of -1
-** Front end [0/5]
+** Front end [0/6]
  - [ ] Combat Logic
  - [ ] Make a website
  - [ ] Dialog skill checks
@@ -22,6 +22,7 @@ A decentralized RPG text-based adventure using ERC-721 tokens as playable charac
    - [ ] Boss Monster
    - [ ] Sword
    - [ ] Fire sword
+   - [ ] Double sided lightsaber
    - [ ] Hat
    - [ ] Background
 ** Post Hackathon [0/3]
