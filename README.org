@@ -1,7 +1,7 @@
 * Crypto-Adventures
 A decentralized RPG text-based adventure using ERC-721 tokens as playable characters
-* TO DO [0/9]
-** Solodity
+* TO DO 
+** Solidity
  - [X] Write Item Contracts [0/2]
    - [X] Weapons
    - [X] Hats
@@ -15,7 +15,7 @@ A decentralized RPG text-based adventure using ERC-721 tokens as playable charac
  - [ ] Make a website
  - [ ] Dialog skill checks
  - [ ] Write Story
- - [ ] Equip Iteam
+ - [ ] Equip Item
    - [ ] Require level = level
  - [ ] Artwork [0/7]
    - [ ] Monster
