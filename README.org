@@ -5,7 +5,7 @@ A decentralized RPG text-based adventure using ERC-721 tokens as playable charac
  - [ ] Write Item Contracts [0/2]
    - [ ] Weapons
    - [ ] Hats
- - [ ] Write Character creation contract
+ - [X] Write Character creation contract
    - [ ] Make sure no kitty can be used twice
  - [ ] Write get Kitty info contract
  - [ ] Monster drop
