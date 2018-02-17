@@ -19,9 +19,12 @@ contract KittyInterface {
     kittyContract = KittyInterface(_address);
   }
 
-  function getKittyDna(uint _zombieId, uint _kittyId) returns uint public{
+  function getKittyDna(uint _kittyId) returns uint public{
     uint kittyDna;
     (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);
     return kittyDna;
+  }
+  function getMap() external {
+    mapping (uint256 => address) public kittyIndexToOwner;
   }
 }
