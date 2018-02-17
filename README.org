@@ -6,7 +6,7 @@ A decentralized RPG text-based adventure using ERC-721 tokens as playable charac
    - [ ] Require level = level
    - [ ] Weapons
    - [ ] Hats
- - [ ] Write Character creation contract
+ - [X] Write Character creation contract
    - [ ] Make sure no kitty can be used twice
  - [ ] Write get Kitty info contract
  - [ ] Add basic race modifier
