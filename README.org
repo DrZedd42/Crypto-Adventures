@@ -2,11 +2,11 @@
 A decentralized RPG text-based adventure using ERC-721 tokens as playable characters
 * TO DO [0/9]
 ** Solodity
- - [ ] Write Item Contracts [0/2]
-   - [ ] Weapons
-   - [ ] Hats
+ - [X] Write Item Contracts [0/2]
+   - [X] Weapons
+   - [X] Hats
  - [X] Write Character creation contract
-   - [ ] Make sure no kitty can be used twice
+   - [X] Make sure no kitty can be used twice
  - [ ] Write get Kitty info contract
  - [ ] Monster drop
    - [ ] +/- 3 levels on a item min of -1

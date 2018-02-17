@@ -27,8 +27,13 @@ contract AdventuresBase is ownable {
     //timestampt when this item was created
     uint64 creationTime;
   }
-  mapping(Char => Item[]) public CharacterToItems;
-  mapping(Item => Char) public itemToCharacer;
+
+  uint32 armorCount = 1;
+  uint32 weaponCount = 2;
+  uint32 effectCount = 1; 
+
+  mapping(Char => Item[]) public characterToItems;
+  mapping(Item => Char) public itemToCharacter;
 
   mapping(uint256 => Char) public catToCharacter;
   mapping(address => Char[]) public ownerToCharacters;
@@ -69,9 +74,28 @@ contract AdventuresBase is ownable {
   }
 
   function genItem(Char character) public {
-     uint256 id = keccak256(genRand256());
+    uint256 id = keccak256(genRand256());
+    
 
+    uint8 itemType = id & 1;
+    id = id >> s1;
+    uint16 type;
+    if (itemType) {
+      type = (id & 13) % weaponCount;
+    } else {
+      type = (id & 13) % armorCount;
+    }
+    id = id >> 13;
+    uint8 q = itemQuality[(id & 3) % 7];
+    id = id >> 3;
+    uint16 effect = (id & 12) % effectCount;
+    id = id >> 12;
+    uint8 effectQ = effectQuality[(id & 3) % 7];
 
+    Item i = Item(itemType, type, q, effect, effectQ, now);
+
+    characterToItems[character].append(i);
+    itemToCharacter[i] = character;
   }
 
   function genRand256() public returns(string) {
