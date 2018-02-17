@@ -1,11 +1,11 @@
 pragma solidity ^0.4.18;
 
-import "items/createItem.sol"
-import "zeppelin-solidity/contracts/ownship/Ownable.sol"
+import "items/createItem.sol";
+import "zeppelin-solidity/contracts/ownship/Ownable.sol";
 
-contract adventuresBase is ownable {
+contract AdventuresBase is ownable {
   //Characters
-  struct Char{
+  struct Char {
       uint8 str;
       uint8 dex;
       uint8 const;
@@ -15,10 +15,34 @@ contract adventuresBase is ownable {
       unit256  race;
   }
 
-  mapping(uint256 => Char) catToCharacter;
-  mapping(address => Char[]) ownerToCharacters;
-  mapping(Char => address) characterToOwner;
+  // Items
+  struct Item {
+    
+    uint8 itemType;
+    uint16 type;
+    uint8 quality;
+    uint16 effect;
+    uint8 effectQuality;
 
+    //timestampt when this item was created
+    uint64 creationTime;
+  }
+
+  uint32 armorCount = 1;
+  uint32 weaponCount = 2;
+  uint32 effectCount = 1; 
+
+  mapping(Char => Item[]) public characterToItems;
+  mapping(Item => Char) public itemToCharacter;
+
+  mapping(uint256 => Char) public catToCharacter;
+  mapping(address => Char[]) public ownerToCharacters;
+  mapping(Char => address) public characterToOwner;
+
+  uint8[] public ItemQuality = [5, 10, 11, 12, 13, 14, 15];
+  uint8[] public effectQuality = [5, 10, 11, 12, 13, 14, 15];
+
+  //generates a character from a Cryptokitty
   function genCharacter(uint256 dna) public {
 
       //TODO check address owns cat
@@ -49,24 +73,38 @@ contract adventuresBase is ownable {
       characterToOwner[c] = msg.sender;
   }
 
-  // Items
-  struct Item {
-    // Shamelessly stolen from Etherbots
-    // [0] part type (representing, i.e., "weapon") 1 = staff, 2 = sword, 3 = shield, 4 = hat
-    // Will add more post hackathon
-    // [1] part ID (representing, i.e., "Sword")
-    // [2] part level (experience),
-    // [3] rarity status, (representing, i.e., "gold")
-    // 1 = broken, 2 = poor, 3 = average, 4 = sturdy, 5 = superior, 6 = ultra, 7 = divine
-    // [4] elemental type, (i.e., "water")
-    // 1 - magic, 2 - dark, 3 - fire, 4 - poison, 5 - plasma
-    // [5] attack type (i.e., "slashing") 1 = piercing, 2 = slashing, 3 = blunt
-    // [6-7] spare storage
-    uint32[8] stats;
+  function genItem(Char character) public {
+    uint256 id = keccak256(genRand256());
+    
 
-    // Timestamp when this item came into existance
-    uint64 creationTime;
+    uint8 itemType = id & 1;
+    id = id >> s1;
+    uint16 type;
+    if (itemType) {
+      type = (id & 13) % weaponCount;
+    } else {
+      type = (id & 13) % armorCount;
+    }
+    id = id >> 13;
+    uint8 q = itemQuality[(id & 3) % 7];
+    id = id >> 3;
+    uint16 effect = (id & 12) % effectCount;
+    id = id >> 12;
+    uint8 effectQ = effectQuality[(id & 3) % 7];
+
+    Item i = Item(itemType, type, q, effect, effectQ, now);
+
+    characterToItems[character].append(i);
+    itemToCharacter[i] = character;
   }
-  // Create an array of items
-  Item[] items;
+
+  function genRand256() public returns(string) {
+    string s = "";
+    for (int x = 0; x < 32; x++) {
+      s += char((now & 255)%256);
+      //tune up
+    }
+      return s;
+  }
+
 }
