@@ -56,10 +56,11 @@ contract AdventuresBase is Ownable {
       //require(msg.sender == kittyToOwner[_kittyId]);
       //TODO check address owns cat
       //check cat doesn't already have a character
+      uint256 dna = 0;
       assert(catToCharacter[dna] == 0);
 
       //Generate Character Stats
-      Char c = genStats(dna);
+      Char storage c = genStats(dna);
       catToCharacter[dna] = c;
       ownerToCharacters[msg.sender].append(c);
       characterToOwner[c] = msg.sender;
@@ -109,7 +110,7 @@ contract AdventuresBase is Ownable {
     id = id >> 12;
     uint8 effectQ = effectQuality[(id & 3) % 7];
 
-    Item i = Item(itemType, ofType, q, effect, effectQ, now);
+    Item storage i = Item(itemType, ofType, q, effect, effectQ, now);
 
     characterToItems[character].append(i);
     itemToCharacter[i] = character;
