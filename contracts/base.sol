@@ -22,12 +22,11 @@ contract AdventuresBase is Ownable {
   struct Item {
 
       uint8 itemType;
-      uint16 ofType;
-      uint8 quality;
-      uint16 effect;
+      uint8 itemQuality;
       uint8 effectQuality;
-
-      // timestamp when this item was created
+      uint16 ofType;
+      uint16 effect;
+      // Timestamp when this item was created
       uint64 creationTime;
   }
 
@@ -46,7 +45,7 @@ contract AdventuresBase is Ownable {
   mapping(uint => Item[]) public characterToItems;
   mapping(uint => uint) public itemToCharacter;
 
-  uint8[] public ItemQuality = [5, 10, 11, 12, 13, 14, 15];
+  uint8[] public itemQuality = [5, 10, 11, 12, 13, 14, 15];
   uint8[] public effectQuality = [5, 10, 11, 12, 13, 14, 15];
 
   //generates a character from a Cryptokitty
