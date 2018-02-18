@@ -1,5 +1,5 @@
 pragma solidity ^0.4.18;
-
+/*
 contract Character{
 
     struct Char{
@@ -47,4 +47,4 @@ contract Character{
         ownerToCharacters[msg.sender].append(c);
         characterToOwner[c] = msg.sender;
     }
-}
+    }*/

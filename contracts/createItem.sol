@@ -9,7 +9,7 @@ contract mintItem is ERC721Token {
     _mint(_to, _tokenId);
   }
 
-  function _genTokenId(address _to) private returns (unit256) {
+  function _genTokenId(address _to) private returns (uint256) {
     randomString = "StringBackwards";
     uint rand = uint(keccak256(randomString));
     return rand;
