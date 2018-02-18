@@ -1,0 +1,32 @@
+* Crypto-Adventures
+A decentralized RPG text-based adventure using ERC-721 tokens as playable characters
+* TO DO 
+** Solidity
+ - [X] Write Item Contracts [0/2]
+   - [X] Weapons
+   - [X] Hats
+ - [X] Write Character creation contract
+   - [X] Make sure no kitty can be used twice
+ - [ ] Write get Kitty info contract
+ - [ ] Monster drop
+   - [ ] +/- 3 levels on a item min of -1
+ - [ ] Combat Logic
+** Front end [0/6]
+ - [ ] Make a website
+ - [ ] Dialog skill checks
+ - [ ] Write Story
+ - [ ] Equip Item
+ - [ ] 
+   - [ ] Require level = level
+** Artwork [0/7]
+   - [ ] Monster
+   - [ ] Background
+   - [X] Boss Monster
+   - [X] Fire sword
+   - [X] Sword
+   - [X] Hat
+** Post Hackathon [0/3]
+- [ ] Double sided lightsaber
+- [ ] Race modifiers
+- [ ] Prevent hacking
+  - [ ] Prevent js injection
