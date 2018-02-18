@@ -1,14 +1,21 @@
 * Crypto-Adventures
 A decentralized RPG text-based adventure using ERC-721 tokens as playable characters
-* TO DO 
+** Website Repo
+   [[https://github.com/Emiller88/Crypto-Adventures-Site/graphs/contributors][Crypto-Adventures-Site]]
+** ETHDenver
+Febuary 16th-18th was the creation of this project. Due to our initial lack of experience in this 'space', we didn't get all of the kinks worked out on a basic
+  
+* TODO 
 ** Solidity
  - [X] Write Item Contracts [2/2]
    - [X] Weapons
    - [X] Hats
- - [X] Write Character creation contract
+ - [ ] Write Character creation contract
    - [ ] Check if owner owns kitty
    - [ ] Make sure no kitty can be used twice
  - [X] Write get Kitty info contract
+ - [ ] Oracle
+   - [ ] http://cryptokitties.wikia.com/wiki/Get_All_Kitties
 ** Front end [0/6]
  - [X] Make a website
  - [ ] Dialog skill checks
