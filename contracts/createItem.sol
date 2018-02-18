@@ -4,7 +4,7 @@ import "../node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol
 
 contract mintItem is ERC721Token {
 
-  function mintItem(address _to) external {
+  function mintItem(address _to) internal {
     uint _tokenId = _genTokenId(_to);
     _mint(_to, _tokenId);
   }
