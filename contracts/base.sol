@@ -30,8 +30,10 @@ contract AdventuresBase is Ownable {
       uint64 creationTime;
   }
 
+  // Create array of Playable Characters
+  Char[] public Chars; 
   // Create an array of items
-  Item[] public Items;
+  Item[] Items;
 
   uint32 armorCount = 1;
   uint32 weaponCount = 2;
