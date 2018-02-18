@@ -9,7 +9,7 @@ contract Character{
         uint8 intel;
         uint8 wis;
         uint8 charisma;
-        unit256  race;
+        uint256  race;
     }
 
     Char[] public chars;
