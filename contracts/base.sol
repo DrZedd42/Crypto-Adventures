@@ -115,10 +115,10 @@ contract AdventuresBase is Ownable {
   }
 
   function genRand256() public returns(string) {
-    string s = "";
-    for (int x = 0; x < 32; x++) {
-      s += char((now & 255)%256);
-      //tune up
+      string storage s = "";
+      for (int x = 0; x < 32; x++) {
+        s += char((now & 255)%256);
+        //tune up
     }
       return s;
   }
