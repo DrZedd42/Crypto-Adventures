@@ -1,6 +1,6 @@
-pragma solidity ^0.4.18
+pragma solidity ^0.4.18;
 
-import 'zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol'
+import "../node_modules/zeppelin-solidity/contracts/token/ERC721/ERC721Token.sol";
 
 contract mintItem is ERC721Token {
 
