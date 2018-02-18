@@ -4,7 +4,7 @@ import "./createItem.sol";
 import "../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./getKitty.sol";
 
-contract AdventuresBase is ownable {
+contract AdventuresBase is Ownable {
   //Characters
   struct Char {
       uint8 str;
@@ -43,7 +43,7 @@ contract AdventuresBase is ownable {
   mapping(address => Char[]) ownerToCharacters;
   mapping(uint => address) characterToOwner;
   // Mapping Items to playable Characters
-  mapping(uint => Items) public characterToItems;
+  mapping(uint => Item[]) public characterToItems;
   mapping(uint => uint) public itemToCharacter;
 
   uint8[] public ItemQuality = [5, 10, 11, 12, 13, 14, 15];
