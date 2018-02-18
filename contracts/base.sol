@@ -94,7 +94,7 @@ contract AdventuresBase is Ownable {
     uint256 id = keccak256(genRand256());
 
     uint8 itemType = id & 1;
-    id = id >> s1;
+    id = id >> 1;
     uint16 ofType;
     if (itemType) {
       ofType = (id & 13) % weaponCount;
