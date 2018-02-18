@@ -1,7 +1,7 @@
 pragma solidity ^0.4.18;
 
-import "./items/createItem.sol";
-import "zeppelin-solidity/contracts/ownship/Ownable.sol";
+import "./createItem.sol";
+import "../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./getKitty.sol";
 
 contract AdventuresBase is ownable {
