@@ -31,16 +31,20 @@ contract AdventuresBase is ownable {
       uint64 creationTime;
   }
 
+  // Create an array of items
+  Item[] public Items;
+
   uint32 armorCount = 1;
   uint32 weaponCount = 2;
   uint32 effectCount = 1; 
 
-  mapping(Char => Item[]) public characterToItems;
-  mapping(Item => Char) public itemToCharacter;
-
-  mapping(uint256 => Char) public catToCharacter;
-  mapping(address => Char[]) public ownerToCharacters;
-  mapping(Char => address) public characterToOwner;
+  // Mapping cats to Playable Characters to Owners
+  mapping(uint => uint) catToCharacter;
+  mapping(address => Char[]) ownerToCharacters;
+  mapping(uint => address) characterToOwner;
+  // Mapping Items to playable Characters
+  mapping(uint => Items) public characterToItems;
+  mapping(uint => uint) public itemToCharacter;
 
   uint8[] public ItemQuality = [5, 10, 11, 12, 13, 14, 15];
   uint8[] public effectQuality = [5, 10, 11, 12, 13, 14, 15];
