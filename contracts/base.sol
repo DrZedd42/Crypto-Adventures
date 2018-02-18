@@ -1,84 +1,121 @@
 pragma solidity ^0.4.18;
 
-import "./items/createItem.sol";
-import "zeppelin-solidity/contracts/ownship/Ownable.sol";
+import "./createItem.sol";
+import "../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./getKitty.sol";
 
-contract AdventuresBase is ownable {
-  //Characters
-  struct Char {
-      uint8 str;
-      uint8 dex;
-      uint8 const;
-      uint8 intel;
-      uint8 wis;
-      uint8 charisma;
-      uint8 race;
-      bool turn;
-      uint64 creationTime;
-  }
+contract AdventuresBase is Ownable {
+    event NewChar(uint charId,
+                  string name,
+                  uint8 str,
+                  uint8 dex,
+                  uint8 const,
+                  uint8 intel,
+                  uint8 wis,
+                  uint8 charisma,
+                  uint8 race,
+                  bool turn,
+                  uint64 creationTime);
 
-  // Items
-  struct Item {
+    event NewItem(uint itemId,
+                  string name,
+                  uint8 itemType,
+                  uint8 itemQuality,
+                  uint8 effectQuality,
+                  uint16 ofType,
+                  uint16 effect,
+                  // Timestamp when this item was created
+                  uint64 creationTime);
+    //Characters
+    struct Char {
+        string name;
+        uint8 str;
+        uint8 dex;
+        uint8 const;
+        uint8 intel;
+        uint8 wis;
+        uint8 charisma;
+        uint8 race;
+        bool turn;
+        // Timestamp when this Char was created
+        uint64 creationTime;
+    }
 
-      uint8 itemType;
-      uint16 type;
-      uint8 quality;
-      uint16 effect;
-      uint8 effectQuality;
+    // Items
+    struct Item {
+        string name;
+        uint8 itemType;
+        uint8 itemQuality;
+        uint8 effectQuality;
+        uint16 ofType;
+        uint16 effect;
+        // Timestamp when this item was created
+        uint64 creationTime;
+    }
 
-      // timestamp when this item was created
-      uint64 creationTime;
-  }
+  // Create array of Playable Characters
+  Char[] public chars; 
+  // Create an array of items
+  Item[] Items;
 
   uint32 armorCount = 1;
   uint32 weaponCount = 2;
   uint32 effectCount = 1; 
 
-  mapping(Char => Item[]) public characterToItems;
-  mapping(Item => Char) public itemToCharacter;
+  // Mapping cats to Playable Characters to Owners
+  mapping(uint => uint) catToCharacter;
+  mapping(address => uint) ownerCharacterCount;
+  mapping(uint => address) characterToOwner;
+  // Mapping Items to playable Characters
+  mapping(uint => Item[]) public characterToItems;
+  mapping(uint => uint) public itemToCharacter;
 
-  mapping(uint256 => Char) public catToCharacter;
-  mapping(address => Char[]) public ownerToCharacters;
-  mapping(Char => address) public characterToOwner;
-
-  uint8[] public ItemQuality = [5, 10, 11, 12, 13, 14, 15];
+  uint8[] public itemQuality = [5, 10, 11, 12, 13, 14, 15];
   uint8[] public effectQuality = [5, 10, 11, 12, 13, 14, 15];
 
   //generates a character from a Cryptokitty
-  function genCharacter() public {
+  function _genCharacter() internal {
 
       //require(msg.sender == kittyToOwner[_kittyId]);
       //TODO check address owns cat
       //check cat doesn't already have a character
-      assert(catToCharacter[dna] == 0);
+      uint256 dna = 0;
+      /* assert(catToCharacter[dna] == 0); */
 
       //Generate Character Stats
-      Char c = genStats(dna);
-      catToCharacter[dna] = c;
-      ownerToCharacters[msg.sender].append(c);
-      characterToOwner[c] = msg.sender;
+      /* Char c = genStats(dna); */
+      /* catToCharacter[dna] = c; */
+      /* ownerToCharacters[msg.sender].push(c); */
+      /* characterToOwner[c] = msg.sender; */
+
+      //Edmund Cleaning
+      // Some above this need cat id and 
+      uint id = chars.push(Char()) - 1;//Add intial values
+      // catToCharacter[uint] = oracle get cat id value
+      ownerCharacterCount[msg.sender]++;
+      // NewChar(genStats(dna));
   }
 
-  function genStats(uint256 dna) private returns(Char) {
+  function genStats(uint256 dna) public returns(Char) {
     uint256 tmp = dna;
 
+    string charName = "nameOfCat";//Will implement later
     //2**42-1
     uint256 garbageNum = 4398046511103;
 
-    uint8 str = (dna & garbageNum) % 6 - 2;
+    uint str = (dna & garbageNum) % 6 - 2;
     tmp = tmp >> 42;
-    uint8 dex = (dna & garbageNum) % 6 - 2;
+    uint dex = (dna & garbageNum) % 6 - 2;
     tmp = tmp >> 42;
-    uint8 const = (dna & garbageNum) % 6 - 2;
+    uint const = (dna & garbageNum) % 6 - 2;
     tmp = tmp >> 42;
-    uint8 intel = (dna & garbageNum) % 6 - 2;
+    uint intel = (dna & garbageNum) % 6 - 2;
     tmp = tmp >> 42;
-    uint8 wis = (dna & garbageNum) % 6 - 2;
+    uint wis = (dna & garbageNum) % 6 - 2;
     tmp = tmp >> 42;
-    uint8 charisma = (dna & garbageNum) % 6 - 2;
+    uint charisma = (dna & garbageNum) % 6 - 2;
     //tmp = tmp >> 42;
-    return Char(10 + str, 10 + dex, 10 + const, 10 + intel, 10 + wis, 10 + charisma, 0, now);
+    return Char(charId, charName,10 + str, 10 + dex, 10 + const, 10 + intel, 10 + wis, 10 + charisma, 0, false, now);
   }
 
   /* Cleaning Kevin's bit shifting
@@ -86,35 +123,35 @@ contract AdventuresBase is ownable {
       atr = (dna & garbageNum) % 6 - 2;
       tmp = tmp >> 42;
   }*/
-  function genItem(Char character) public {
+  function genItem(Char character) private {
     uint256 id = keccak256(genRand256());
 
-    uint8 itemType = id & 1;
-    id = id >> s1;
-    uint16 type;
+    uint itemType = id & 1;
+    id = id >> 1;
+    uint ofType;
     if (itemType) {
-      type = (id & 13) % weaponCount;
+      ofType = (id & 13) % weaponCount;
     } else {
-      type = (id & 13) % armorCount;
+      ofType = (id & 13) % armorCount;
     }
     id = id >> 13;
-    uint8 q = itemQuality[(id & 3) % 7];
+    uint q = itemQuality[(id & 3) % 7];
     id = id >> 3;
-    uint16 effect = (id & 12) % effectCount;
+    uint effect = (id & 12) % effectCount;
     id = id >> 12;
-    uint8 effectQ = effectQuality[(id & 3) % 7];
+    uint effectQ = effectQuality[(id & 3) % 7];
 
-    Item i = Item(itemType, type, q, effect, effectQ, now);
+    Item i = Item(itemType, ofType, q, effect, effectQ, now);
 
-    characterToItems[character].append(i);
+    characterToItems[charId].push(i);
     itemToCharacter[i] = character;
   }
 
   function genRand256() public returns(string) {
-    string s = "";
-    for (int x = 0; x < 32; x++) {
-      s += char((now & 255)%256);
-      //tune up
+      string storage s = "";
+      for (int x = 0; x < 32; x++) {
+        s += Char((now & 255)%256);
+        //tune up
     }
       return s;
   }

@@ -1,5 +1,5 @@
 pragma solidity ^0.4.18;
-
+/*
 contract Character{
 
     struct Char{
@@ -9,12 +9,14 @@ contract Character{
         uint8 intel;
         uint8 wis;
         uint8 charisma;
-        unit256  race;
+        uint256  race;
     }
 
-    mapping(uint256 => Char) catToCharacter;
+    Char[] public chars;
+
+    mapping(uint => uint) catToCharacter;
     mapping(address => Char[]) ownerToCharacters;
-    mapping(Char => address) characterToOwner;
+    mapping(uint => address) characterToOwner;
 
     function genCharacter(uint256 dna) public {
 
@@ -23,7 +25,7 @@ contract Character{
         assert(catToCharacter[dna] == 0);
 
         uint256 tmp = dna;
-        
+
         //2**42-1
         uint256 garbageNum = 4398046511103;
 
@@ -45,4 +47,4 @@ contract Character{
         ownerToCharacters[msg.sender].append(c);
         characterToOwner[c] = msg.sender;
     }
-}
+    }*/

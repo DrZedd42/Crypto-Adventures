@@ -1,4 +1,6 @@
-pragma solidity ^0.4.18
+pragma solidity ^0.4.18;
+
+import "./base.sol";
 
 contract KittyInterface {
 
@@ -14,17 +16,20 @@ contract KittyInterface {
                                                         uint256 generation,
                                                         uint256 genes
                                                         );
+}
+
+contract KittyBase {
+  address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
+  KittyInterface kittyContract = KittyInterface(ckAddress);
 
   function setKittyContractAddress(address _address) external {
     kittyContract = KittyInterface(_address);
   }
 
-  function getKittyDna(uint _kittyId) returns uint public{
+  function getKittyDna(uint _kittyId) public returns (uint256) {
     uint kittyDna;
     (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId);
     return kittyDna;
   }
-  function getMap() external {
-    mapping (uint256 => address) public kittyIndexToOwner;
-  }
+  //Add Kitty Oracle
 }

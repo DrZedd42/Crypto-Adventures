@@ -1,31 +1,38 @@
 * Crypto-Adventures
 A decentralized RPG text-based adventure using ERC-721 tokens as playable characters
-* TO DO 
+** Website Repo
+   [[https://github.com/Emiller88/Crypto-Adventures-Site/graphs/contributors][Crypto-Adventures-Site]]
+** ETHDenver
+Febuary 16th-18th was the creation of this project. Due to our initial lack of experience in this 'space', we didn't get all of the kinks worked out on a basic
+  
+* TODO 
 ** Solidity
- - [X] Write Item Contracts [0/2]
+ - [X] Write Item Contracts [2/2]
    - [X] Weapons
    - [X] Hats
- - [X] Write Character creation contract
-   - [X] Make sure no kitty can be used twice
- - [ ] Write get Kitty info contract
- - [ ] Monster drop
-   - [ ] +/- 3 levels on a item min of -1
- - [ ] Combat Logic
+ - [ ] Write Character creation contract
+   - [ ] Check if owner owns kitty
+   - [ ] Make sure no kitty can be used twice
+ - [X] Write get Kitty info contract
+ - [ ] Oracle
+   - [ ] http://cryptokitties.wikia.com/wiki/Get_All_Kitties
 ** Front end [0/6]
- - [ ] Make a website
+ - [X] Make a website
  - [ ] Dialog skill checks
  - [ ] Write Story
  - [ ] Equip Item
- - [ ] 
+ - [ ] Combat Logic
    - [ ] Require level = level
 ** Artwork [0/7]
-   - [ ] Monster
    - [ ] Background
+   - [X] Monster
    - [X] Boss Monster
    - [X] Fire sword
    - [X] Sword
    - [X] Hat
 ** Post Hackathon [0/3]
+ - [ ] Monster drop
+   - [ ] +/- 3 levels on a item min of -1
 - [ ] Double sided lightsaber
 - [ ] Race modifiers
 - [ ] Prevent hacking
