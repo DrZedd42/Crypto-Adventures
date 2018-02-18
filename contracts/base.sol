@@ -62,7 +62,7 @@ contract AdventuresBase is Ownable {
       //Generate Character Stats
       Char storage c = genStats(dna);
       catToCharacter[dna] = c;
-      ownerToCharacters[msg.sender].append(c);
+      ownerToCharacters[msg.sender].pus(c);
       characterToOwner[c] = msg.sender;
   }
 
@@ -112,14 +112,14 @@ contract AdventuresBase is Ownable {
 
     Item storage i = Item(itemType, ofType, q, effect, effectQ, now);
 
-    characterToItems[character].append(i);
+    characterToItems[character].push(i);
     itemToCharacter[i] = character;
   }
 
   function genRand256() public returns(string) {
       string storage s = "";
       for (int x = 0; x < 32; x++) {
-        s += char((now & 255)%256);
+        s += Char((now & 255)%256);
         //tune up
     }
       return s;
