@@ -22,7 +22,7 @@ contract AdventuresBase is ownable {
   struct Item {
 
       uint8 itemType;
-      uint16 type;
+      uint16 ofType;
       uint8 quality;
       uint16 effect;
       uint8 effectQuality;
@@ -91,11 +91,11 @@ contract AdventuresBase is ownable {
 
     uint8 itemType = id & 1;
     id = id >> s1;
-    uint16 type;
+    uint16 ofType;
     if (itemType) {
-      type = (id & 13) % weaponCount;
+      ofType = (id & 13) % weaponCount;
     } else {
-      type = (id & 13) % armorCount;
+      ofType = (id & 13) % armorCount;
     }
     id = id >> 13;
     uint8 q = itemQuality[(id & 3) % 7];
@@ -104,7 +104,7 @@ contract AdventuresBase is ownable {
     id = id >> 12;
     uint8 effectQ = effectQuality[(id & 3) % 7];
 
-    Item i = Item(itemType, type, q, effect, effectQ, now);
+    Item i = Item(itemType, ofType, q, effect, effectQ, now);
 
     characterToItems[character].append(i);
     itemToCharacter[i] = character;
