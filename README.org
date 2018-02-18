@@ -2,30 +2,30 @@
 A decentralized RPG text-based adventure using ERC-721 tokens as playable characters
 * TO DO 
 ** Solidity
- - [X] Write Item Contracts [0/2]
+ - [X] Write Item Contracts [2/2]
    - [X] Weapons
    - [X] Hats
  - [X] Write Character creation contract
-   - [X] Make sure no kitty can be used twice
- - [ ] Write get Kitty info contract
- - [ ] Monster drop
-   - [ ] +/- 3 levels on a item min of -1
- - [ ] Combat Logic
+   - [ ] Check if owner owns kitty
+   - [ ] Make sure no kitty can be used twice
+ - [X] Write get Kitty info contract
 ** Front end [0/6]
- - [ ] Make a website
+ - [X] Make a website
  - [ ] Dialog skill checks
  - [ ] Write Story
  - [ ] Equip Item
- - [ ] 
+ - [ ] Combat Logic
    - [ ] Require level = level
 ** Artwork [0/7]
-   - [ ] Monster
    - [ ] Background
+   - [X] Monster
    - [X] Boss Monster
    - [X] Fire sword
    - [X] Sword
    - [X] Hat
 ** Post Hackathon [0/3]
+ - [ ] Monster drop
+   - [ ] +/- 3 levels on a item min of -1
 - [ ] Double sided lightsaber
 - [ ] Race modifiers
 - [ ] Prevent hacking
